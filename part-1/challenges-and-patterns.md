@@ -67,3 +67,29 @@ Using a proxy is a way to move these horizontal concerns into the infrastructure
 A proxy is an intermediate infrastructure component that can handle connections and redirect them to appropriate backends.
 We use proxies all the time (whether we know it or not) to handle network traffic, enforce security, and load balance work to backend servers.
 For example, **HAProxy** is a simple but powerful reverse proxy for distributing connections across many backend servers. 
+
+What we want for this problem, however, is a proxy that’s application aware and able to perform application networking on behalf of our services
+This proxy needs to understand application constructs like messages and requests, unlike more traditional infrastructure proxies, which understand connections and packets.  
+In other words, we need a layer 7 proxy.
+
+## Meet the Envoy proxy
+
+[Envoy](http://envoyproxy.io) is a service proxy that has emerged in the open source community as a versatile, performant, and capable application-layer proxy.  
+It is capable of implementing networking concerns like retries, timeouts, circuit breaking, client-side load balancing, service discovery, security, and metrics collection without any explicit language or framework dependencies.  
+Envoy implements all of that out-of-process from the application.  
+  
+The power of Envoy is not limited to these application-layer resilience aspects. Envoy also captures many application-networking metrics like requests per second, number
+of failures, circuit-breaking events, and more.  
+By using Envoy, we can automatically get visibility into what’s happening between our services, which is where we start to see a lot of unanticipated complexity.  
+  
+The Envoy proxy forms the foundation for solving cross-cutting, horizontal reliability and observability concerns for a services architecture and allows us to push these concerns outside of the applications and into the infrastructure.  
+  
+We can deploy service proxies alongside our applications to get these features (resilience and observability) out-of-process from the application, but at a fidelity that
+is very application specific.  
+  
+Service proxies can also do things like collect distributed tracing spans so we can stitch together all the steps taken by a particular request. We can see how long each
+step took and look for potential bottlenecks or bugs in our system.
+  
+This proxy + application combination forms the foundation of a communication bus known as a service mesh.
+
+![Application with proxy as side container](side-proxy.png)
