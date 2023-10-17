@@ -66,4 +66,4 @@ What we really want is a technology-agnostic way to implement these concerns and
 Using a proxy is a way to move these horizontal concerns into the infrastructure.
 A proxy is an intermediate infrastructure component that can handle connections and redirect them to appropriate backends.
 We use proxies all the time (whether we know it or not) to handle network traffic, enforce security, and load balance work to backend servers.
-For example, ""HAProxy"" is a simple but powerful reverse proxy for distributing connections across many backend servers. 
+For example, **HAProxy** is a simple but powerful reverse proxy for distributing connections across many backend servers. 
