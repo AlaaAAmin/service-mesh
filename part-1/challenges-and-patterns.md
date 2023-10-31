@@ -101,4 +101,28 @@ Each application can have its own requirements or configurations for how a proxy
   
 Having these proxies in place at each application instance opens opportunities for building interesting higher-order capabilities that we would otherwise have to do in the applications themselves.  
   
-A service mesh is a distributed application infrastructure that is responsible for handling network traffic on behalf of the application in a transparent, out-of-process manner.
+A service mesh is a distributed application infrastructure that is responsible for handling network traffic on behalf of the application in a transparent, out-of-process manner.  
+  
+The following figure shows how service proxies form the data plane through which all traffic is handled and observed.  
+  
+![Data plane](data-plane.png)
+
+The data plane is responsible for establishing, securing, and controlling the traffic through the mesh.  
+  
+The data plane behavior is configured by the control plane.  
+The control plane is the brain of the mesh and exposes an API for operators to manipulate network behaviors. Together, the data plane and the control plane provide important capabilities necessary in any cloud-native architecture:  
+
+- Service resilience  
+    The service mesh takes on the responsibility of making service communication resilient to failures by implementing capabilities like retries, timeouts, and circuit breakers.  
+- Observability signals  
+    we’re able to capture detailed signals about the behavior of the network by tracking metrics like request spikes, latency, throughput, failures, and so on.  
+- Traffic control capabilities  
+    Since all the traffic flows through the mesh, operators can control and direct traffic explicitly.  
+
+- Security  
+since the service mesh controls both ends of the network communication between applications, it can enforce strong security like transport-layer encryption with mutual authentication: specifically, using the mutual Transport Layer Security (mTLS) protocol.  
+
+- Policy enforcement  
+
+Service meshes are also capable of handling evolving infrastructure topologies by handling things like service discovery, adaptive and zone-aware load balancing, and health checking.  
+
