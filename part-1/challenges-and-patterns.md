@@ -92,4 +92,13 @@ step took and look for potential bottlenecks or bugs in our system.
   
 This proxy + application combination forms the foundation of a communication bus known as a service mesh.
 
-![Application with proxy as side container](side-proxy.png)
+![Application with proxy as side container](side-proxy.png)  
+
+## What’s a service mesh?  
+
+Service proxies like Envoy help add important capabilities to our services architecture  
+Each application can have its own requirements or configurations for how a proxy should behave, given its workload goals.  
+  
+Having these proxies in place at each application instance opens opportunities for building interesting higher-order capabilities that we would otherwise have to do in the applications themselves.  
+  
+A service mesh is a distributed application infrastructure that is responsible for handling network traffic on behalf of the application in a transparent, out-of-process manner.
