@@ -144,7 +144,7 @@ With a service proxy next to each application instance, applications no longer n
 Since traffic in the service mesh flows through the Istio service proxy, Istio has control points at each application to influence and direct its networking behavior. This
 allows a service operator to control traffic flow and implement fine-grained releases with canary releases, dark launches, graduated roll outs, and A/B style testing.  
   
-### Security
+#### Security
 
 Istio has security enabled by default. Since Istio controls each end of the application’s networking path, it can:  
 - Transparently encrypt the traffic by default.  
@@ -152,4 +152,12 @@ Istio has security enabled by default. Since Istio controls each end of the appl
 - Assign a workload identity and embed that into the certificates.
 - Also use the identities of different workloads to further implement powerful access-control policies.
 - Implement quotas, rate limiting, and organizational policies.
-- Using Istio’s policy enforcement, you can create very fine-grained rules about what services are allowed to interact with each other, and which are not.
+- Using Istio’s policy enforcement, you can create very fine-grained rules about what services are allowed to interact with each other, and which are not.  
+  
+### How a service mesh relates to an enterprise service bus
+
+ESB integrated applications by placing itself in the center and then comingled application business logic with application routing, transformation, and mediation.  
+  
+A service mesh’s role is only in application networking concerns.  
+Complex business transformations (such as X12, EDI, and HL7), business process orchestration, process exceptions, service orchestration, and so on do not belong in a service mesh.  
+Additionally, the service mesh data plane is highly distributed, with its proxies collocated with applications. This eliminates single points of failure or bottlenecks that often appear with an ESB architecture.
