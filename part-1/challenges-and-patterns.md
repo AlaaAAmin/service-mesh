@@ -160,4 +160,18 @@ ESB integrated applications by placing itself in the center and then comingled a
   
 A service mesh’s role is only in application networking concerns.  
 Complex business transformations (such as X12, EDI, and HL7), business process orchestration, process exceptions, service orchestration, and so on do not belong in a service mesh.  
-Additionally, the service mesh data plane is highly distributed, with its proxies collocated with applications. This eliminates single points of failure or bottlenecks that often appear with an ESB architecture.
+Additionally, the service mesh data plane is highly distributed, with its proxies collocated with applications. This eliminates single points of failure or bottlenecks that often appear with an ESB architecture.  
+
+### How a service mesh relates to an API gateway
+
+API gateway infrastructure (not the microservices pattern from http://microservices.io/patterns/apigateway.html) is used in API management suites to provide a public-facing endpoint for an organization’s public APIs.  
+  
+Its role is to provide:
+- security
+- rate limiting
+- quota management
+- metrics collection for these public APIs
+- tie into an overall API management solution that includes API plan specification, user registration, billing, and other operational concerns.  
+  
+- API gateway architectures vary wildly but have been used mostly at the edge of architectures to expose public APIs.
+- They have also been used for internal APIs to centralize security, policy, and metrics collection. However, this creates a centralized system through which traffic travels, which can become a source of bottlenecks, as described for the ESB and messaging bus.  
