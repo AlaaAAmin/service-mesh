@@ -138,4 +138,18 @@ uses the Envoy proxy and helps you configure your application to have an instanc
 
 Istio was originally built to run on Kubernetes but was written from the perspective of being deployment-platform agnostic.  
 This means you can use an Istio-based service mesh across different platforms like Kubernetes, OpenShift, and even traditional deployment environments like virtual machines (VMs).  
+  
+With a service proxy next to each application instance, applications no longer need language-specific resilience libraries for circuit breaking, timeouts, retries, service discovery, load balancing, and so on. Moreover, the service proxy also handles metrics collection, distributed tracing, and access control.  
+  
+Since traffic in the service mesh flows through the Istio service proxy, Istio has control points at each application to influence and direct its networking behavior. This
+allows a service operator to control traffic flow and implement fine-grained releases with canary releases, dark launches, graduated roll outs, and A/B style testing.  
+  
+### Security
 
+Istio has security enabled by default. Since Istio controls each end of the application’s networking path, it can:  
+- Transparently encrypt the traffic by default.  
+- To take it a step further, Istio can manage key and certificate issuance, installation, and rotation so that services get mutual TLS out of the box.
+- Assign a workload identity and embed that into the certificates.
+- Also use the identities of different workloads to further implement powerful access-control policies.
+- Implement quotas, rate limiting, and organizational policies.
+- Using Istio’s policy enforcement, you can create very fine-grained rules about what services are allowed to interact with each other, and which are not.
