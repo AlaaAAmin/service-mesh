@@ -124,5 +124,18 @@ since the service mesh controls both ends of the network communication between a
 
 - Policy enforcement  
 
-Service meshes are also capable of handling evolving infrastructure topologies by handling things like service discovery, adaptive and zone-aware load balancing, and health checking.  
+Service meshes are also capable of handling evolving infrastructure topologies by handling things like service discovery, adaptive and zone-aware load balancing and health checking.  
+
+## Introducing the Istio service mesh
+
+Istio is an open source implementation of a service mesh  
+With Istio, applications don’t have to know that they’re part of the service mesh: whenever they interact with the outside world, Istio handles the networking on their behalf.  
+  
+- Istio’s data plane:  
+uses the Envoy proxy and helps you configure your application to have an instance of the service proxy (Envoy) deployed alongside it.  
+  
+- Istio’s control plane is made up of a few components that provide APIs for end users/operators, configuration APIs for the proxies, security settings, policy declarations, and more.  
+
+Istio was originally built to run on Kubernetes but was written from the perspective of being deployment-platform agnostic.  
+This means you can use an Istio-based service mesh across different platforms like Kubernetes, OpenShift, and even traditional deployment environments like virtual machines (VMs).  
 
