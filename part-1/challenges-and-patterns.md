@@ -175,3 +175,20 @@ Its role is to provide:
   
 - API gateway architectures vary wildly but have been used mostly at the edge of architectures to expose public APIs.
 - They have also been used for internal APIs to centralize security, policy, and metrics collection. However, this creates a centralized system through which traffic travels, which can become a source of bottlenecks, as described for the ESB and messaging bus.  
+  
+
+The next figure shows how all internal traffic between services traverses the API gateway when used for internal APIs.  
+This means for each service in the graph, we’re taking two hops: one to get to the gateway and one to get to the actual service.  
+This has implications not just for network overhead and latency but also for security.  
+With this multi-hop architecture:
+- The API gateway cannot secure the transport mechanism with the application unless the application participates in the security configuration.
+- In many cases, an API gateway doesn’t implement resilience capabilities like circuit breakers or bulkheading.  
+![API Gateway](api-gateway.png)  
+  
+In a service mesh:
+- proxies are collocated with the services and do not take on additional hops.  
+- They’re also decentralized so each application can configure its proxy for its particular workloads and not be affected by noisy neighbor scenarios.  
+- Since each proxy lives with its corresponding application instance, it can secure the transport mechanism from end to end without the application knowing or actively participating.  
+  
+As service mesh technologies like Istio continue to mature, we’ll see API management built on top of the service mesh and not need specialized API gateway proxies.   
+  
