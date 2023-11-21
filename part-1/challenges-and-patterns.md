@@ -190,5 +190,17 @@ In a service mesh:
 - They’re also decentralized so each application can configure its proxy for its particular workloads and not be affected by noisy neighbor scenarios.  
 - Since each proxy lives with its corresponding application instance, it can secure the transport mechanism from end to end without the application knowing or actively participating.  
   
-As service mesh technologies like Istio continue to mature, we’ll see API management built on top of the service mesh and not need specialized API gateway proxies.   
+As service mesh technologies like Istio continue to mature, we’ll see API management built on top of the service mesh and not need specialized API gateway proxies.  
   
+### Drawbacks to using a service mesh
+1. Using a service mesh puts another piece of middleware, specifically a proxy, in the request path.
+This proxy can deliver a lot of value; but for those unfamiliar with the proxy, it can end up being a black box and make it harder to debug an application’s behavior.  
+The Envoy proxy is specifically built to be very debuggable by exposing a lot about what’s happening on the network but it can still be complex to manage.
+
+2. Another drawback of using a service mesh is in terms of tenancy.  
+The more services in the mesh, The more valuable the mesh becomes for operating those services. However, without proper policy, automation, and forethought going into the tenancy and isolation models of the physical mesh deployment, you could end up in a situation where misconfiguring the mesh impacts many services.  
+
+3. A service mesh can expose a lot of opportunities to improve security, observability, and routing control posture.
+The downside is that a mesh introduces another layer and another opportunity for complexity.  
+It can be difficult to understand how to configure, operate, and, most importantly, integrate it within your existing organizational processes and governance
+and between existing teams.
